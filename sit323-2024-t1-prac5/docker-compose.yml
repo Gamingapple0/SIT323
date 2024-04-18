@@ -1,8 +1,28 @@
 version: '3.8'
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    image: week5-app
     ports:
-      - "3000:3000"
+      - '3000:3000'
+    environment:
+      - PORT=3000
+    container_name: my-app4
+    networks:
+      - my-net
+
+  app1:
+    build: .
+    image: week5-app
+    ports:
+      - '3001:3000'
+    environment:
+      - PORT=3000
+    container_name: my-app3
+    networks:
+      - my-net
+
+
+networks:
+  my-net:
+    driver: bridge
