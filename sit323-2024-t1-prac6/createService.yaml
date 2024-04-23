@@ -1,0 +1,15 @@
+apiVersion: v1  # API version
+kind: Service   # Service resource type
+metadata:
+  name: example-service
+spec:
+  selector:
+    tier: frontend  # Selects Pods labeled as frontend
+  clusterIP: 10.99.132.220
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: myport
+    port: 8037    # Exposed port
+    protocol: TCP
+    targetPort: 3000
+  type: LoadBalancer   # Specifies the type of Service

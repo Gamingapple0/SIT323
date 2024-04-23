@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myreplicaset
+  labels:
+    app: myapp
+    tier: frontend
+spec:
+  # Define the number of replicas for the ReplicaSet
+  replicas: 3
+  selector:
+    matchLabels:
+      # Select pods with the "tier: frontend" label
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        # Apply the "tier: frontend" label to pods created by this ReplicaSet
+        tier: frontend
+    spec:
+      containers:
+      - name: mynode
+        # Use the specified Docker image for the container
+        image: gamingapple0/week5:latest
+        ports:
+        - containerPort: 3000
+          # Expose port 3000 for communication within the Kubernetes cluster

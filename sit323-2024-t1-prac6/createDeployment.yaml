@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+    app: myapp
+    tier: frontend
+spec:
+  # Set the number of desired replicas for the deployment
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: mynode
+        # Define the image to be used for the container
+        image: gamingapple0/week5:latest
+        # Specify the port on which the container will listen for incoming traffic
+        ports:
+        - containerPort: 3000
