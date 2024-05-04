@@ -2,22 +2,22 @@ version: '3.8'
 services:
   app:
     build: .
-    image: alamfaisal654/node-web-app
+    image: gamingapple0/week5:latest
     ports:
-      - '3043:3040'
+      - '3000:3000'
     environment:
-      - PORT=3043
+      - PORT=3000
     container_name: my-app4
     networks:
       - my-net
 
   app1:
     build: .
-    image: alamfaisal654/node-web-app
+    image: gamingapple0/week5:latest
     ports:
-      - '3044:3040'
+      - '3001:3001'
     environment:
-      - PORT=3044
+      - PORT=3001
     container_name: my-app3
     networks:
       - my-net
