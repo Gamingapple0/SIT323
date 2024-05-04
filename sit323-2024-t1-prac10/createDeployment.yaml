@@ -1,0 +1,41 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "week10-deployment"
+  namespace: "default"
+  labels:
+    app: "week10-deployment"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "week10-deployment"
+  template:
+    metadata:
+      labels:
+        app: "week10-deployment"
+    spec:
+      containers:
+      - name: "week10-1"
+        image: "australia-southeast1-docker.pkg.dev/sit323-24t1-madhikarmi-e6f322a/microservice-test/week10:latest"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "week10-deployment-hpa-92jv"
+  namespace: "default"
+  labels:
+    app: "week10-deployment"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "week10-deployment"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80

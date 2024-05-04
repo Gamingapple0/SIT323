@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    image: australia-southeast1-docker.pkg.dev/sit323-24t1-madhikarmi-e6f322a/microservice-test/week10:latest
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+    container_name: my-app4
+    networks:
+      - my-net
+
+  app1:
+    build: .
+    image: australia-southeast1-docker.pkg.dev/sit323-24t1-madhikarmi-e6f322a/microservice-test/week10:latest
+    ports:
+      - '3001:3001'
+    environment:
+      - PORT=3001
+    container_name: my-app3
+    networks:
+      - my-net
+
+
+networks:
+  my-net:
+    driver: bridge
